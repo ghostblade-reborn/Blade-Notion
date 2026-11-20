@@ -4,13 +4,13 @@
 
 GhostBlade Notion is a native Android app that re-implements the core idea of Notion (everything is a record; pages, databases and content all live in one local model) and fuses it with the task logic of [GhostBlade Task](https://github.com/ghostblade-reborn/Gbostblade-Todo-App): channels, scripts, video ideas and tasks — all interlinked, all on your phone.
 
-> Status: **v0.4** — database views (tables + board), page templates and a persisted Trash landed, Monitoring-verified (492 JVM logic tests passing, byte-reproducible APK build, zero permissions). See "v0.4 status" below for exactly what works today.
+> Status: **v0.5** — the v0.4 feature set (database views, page templates, persisted Trash), plus privacy-first seeding: the app ships with NO pre-named channels — one template channel ("Write your channel name") you rename, plus "+ add new channel". 492 JVM logic tests passing, zero permissions. See "v0.4 status" below for the feature detail.
 
 ## Vision
 
 One app for a faceless content creator's whole workflow:
 
-- **Channels** — every YouTube channel gets its own homepage tab (Channel One, Channel Two, and "+ add new channel" for whatever comes next).
+- **Channels** — every YouTube channel gets its own homepage tab (one template channel to rename, and "+ add new channel" for whatever comes next).
 - **Scripts** — inside each channel, all its scripts in **Bangla or English**, each with a date and a **draft → final** flow: drafts become final scripts when you mark them done.
 - **Video Ideas** — a place to capture ideas the moment they strike. Hit **"Start script"** on an idea and a script is created and **auto-linked both ways** — the script knows which idea it came from, and the idea knows which script it became.
 - **Tasks** — channel tasks and daily to-dos live next to the scripts they belong to, not in a separate app.
@@ -31,7 +31,7 @@ For contrast: the official Notion Android app ships with 40 permissions and a cl
 
 **Works today:**
 
-- Channels homepages (seeded with Channel One + Channel Two; add your own)
+- Channels homepages (one template channel seeded — "Write your channel name", rename it; add your own)
 - Scripts per channel: create drafts, edit body (routed through a validated Store update that timestamps edits), optional date (typed or via date picker, validated), language chips with a persistent selected state (BANGLA / ENGLISH), status chip (DRAFT / FINAL), **Mark FINAL**; editors autosave drafts, so a process kill doesn't lose writing
 - **Pages** — a Notion-style page tree: pages nest inside pages, with an expandable Pages screen, tappable breadcrumb, sub-pages, rename, cascade delete with a disclosure dialog + undo — and since v0.4 a "Move to…" picker to reparent a page
 - **Block editor** on every page: text, heading, bulleted/numbered lists, to-do blocks with a real checkbox, toggles that collapse (with real child blocks, authorable since v0.4), quote, code and divider blocks — add, edit (draft-autosaved), reorder, turn-into and delete, all stored as records
@@ -60,7 +60,7 @@ No Gradle. No AndroidX. No Compose. Framework-only Kotlin, built with a single s
 
 Pipeline: `aapt2` (compile + link resources) → `javac` (R.java) → `kotlinc` (app sources) → `d8` (dex + kotlin-stdlib) → `zipalign` → `apksigner`.
 
-Output: `GhostBladeNotion-v0.4.apk` (plus a `GhostBladeNotion.apk` copy), signed with a debug keystore. The build is byte-reproducible: two clean builds produce an identical SHA-256 (v0.4: `b10656223f39bceb7a87664d504c5379b5e3e9b67f8c2e1029b13a1bf5fa4191`, 762,902 bytes, independently rebuilt and matched by the Monitoring Team).
+Output: `GhostBladeNotion-v0.5.apk` (plus a `GhostBladeNotion.apk` copy), signed with a debug keystore. v0.5: SHA-256 `4db617cedd26a9bae7eb149d9573cc1ed523d7a7dfcca4589f57d755d3d42f67`, 762,902 bytes. (The v0.4 build was byte-reproducible: two clean builds produced an identical SHA-256, `b10656223f39bceb7a87664d504c5379b5e3e9b67f8c2e1029b13a1bf5fa4191`, independently rebuilt and matched by the Monitoring Team.)
 
 **Requirements:**
 

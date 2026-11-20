@@ -21,8 +21,8 @@ PASS  addDays +30 over month
 PASS  uid unique
 PASS  sortBlocks by order
 PASS  sortBlocks stable on ties
-PASS  seed creates 2 channels
-PASS  seed channel names
+PASS  seed creates 1 template channel
+PASS  seed channel name is the template
 PASS  seed twice does not duplicate
 PASS  addScript returns script
 PASS  new script is DRAFT
@@ -492,12 +492,3 @@ PASS  restore from round-tripped trash true
 PASS  round-tripped restore brings script back
 ----
 492 checks, 0 failures
-RUN_EXIT=0
-
-====
-Db.kt compile check (compile-only, against android.jar):
-  kotlinc Models.kt Logic.kt Store.kt Db.kt -cp android-34/android.jar -d /tmp/gbn-r4/dbcheck.jar
-  Result: COMPILE OK (exit 0, no errors)
-Full-app compile check (all six sources incl. MainActivity.kt/Ui.kt as-is at check time — still the settled v0.3 UI, Team Two's R4 UI not yet landed; R class from the v0.3 build):
-  kotlinc src/com/ghostblade/notion/*.kt -cp android.jar:build/classes -d /tmp/gbn-r4/full.jar
-  Result: COMPILE OK (exit 0; only the pre-existing onBackPressed deprecation warnings, R2 N-10)

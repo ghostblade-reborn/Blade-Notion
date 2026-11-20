@@ -957,7 +957,7 @@ class MainActivity : Activity() {
         }
 
         sectionTitle("+ Add channel")
-        val nameInput = Ui.input(this, "Channel name (e.g. Channel One)")
+        val nameInput = Ui.input(this, "Write your channel name")
         contentCol.addView(nameInput, Ui.lp(this, b = 8f))
         contentCol.addView(Ui.button(this, "Add channel", primary = true) {
             val name = nameInput.text.toString().trim()

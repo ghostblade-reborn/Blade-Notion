@@ -62,12 +62,12 @@ fun main() {
     /* ---------- Store: seeding ---------- */
     val store = Store()
     store.seedIfEmpty()
-    check("seed creates 2 channels", store.channels.size, 2)
-    check("seed channel names", store.channels.map { it.name }, listOf("Channel One", "Channel Two"))
+    check("seed creates 1 template channel", store.channels.size, 1)
+    check("seed channel name is the template", store.channels.map { it.name }, listOf("Write your channel name"))
     store.seedIfEmpty()
-    check("seed twice does not duplicate", store.channels.size, 2)
+    check("seed twice does not duplicate", store.channels.size, 1)
     val riseId = store.channels[0].id
-    val rebornId = store.channels[1].id
+    val rebornId = store.addChannel("Second Channel").id
 
     /* ---------- Store: script flow (draft -> final) ---------- */
     val script = store.addScript(riseId, "Test Script", "body text", Language.BANGLA, "2026-11-21")
@@ -265,7 +265,7 @@ fun main() {
     val cs = Store()
     cs.seedIfEmpty()
     val cA = cs.channels[0]
-    val cB = cs.channels[1]
+    val cB = cs.addChannel("Channel B")
     val cScript = cs.addScript(cA.id, "Movable")!!
     check("updateScript channelId moves channel", cs.updateScript(cScript.id, channelId = cB.id), true)
     check("script now in channel B", cScript.channelId, cB.id)
@@ -335,7 +335,7 @@ fun main() {
     val ivScript = iv.addScript(iv.channels[0].id, "Keep Me")!!
     check("loadFromJsonString valid returns true", iv.loadFromJsonString(iv.toJsonString()), true)
     check("import {channels:5} rejected", iv.loadFromJsonString("{\"channels\": 5}"), false)
-    check("store untouched after bad-type import (channels)", iv.channels.size, 2)
+    check("store untouched after bad-type import (channels)", iv.channels.size, 1)
     check("store untouched after bad-type import (script kept)", iv.scriptById(ivScript.id)?.title, "Keep Me")
     check("import {scripts:string} rejected", iv.loadFromJsonString("{\"scripts\": \"x\"}"), false)
     check("import {pages:object} rejected", iv.loadFromJsonString("{\"pages\": {}}"), false)
@@ -783,7 +783,7 @@ fun main() {
     tv.savePageAsTemplate(tvPage.id, "Guard Template")
     check("import {templates:5} rejected", tv.loadFromJsonString("{\"templates\": 5}"), false)
     check("templates untouched after bad-type import", tv.templates.size, 1)
-    check("channels untouched after bad-type import", tv.channels.size, 2)
+    check("channels untouched after bad-type import", tv.channels.size, 1)
     check("import {trash:string} rejected", tv.loadFromJsonString("{\"trash\": \"x\"}"), false)
     check("trash untouched after bad-type import", tv.trash.size, 0)
 

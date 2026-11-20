@@ -214,12 +214,14 @@ class Store {
 
     /* ---------- seeding ---------- */
 
-    /** Seeds the owner's two real channels when (and only when) there are no
-     *  channels yet — calling it again never duplicates. */
+    /** Seeds ONE template channel when (and only when) there are no
+     *  channels yet — no pre-named channels: the template simply says
+     *  "Write your channel name"; the owner renames it and adds more
+     *  channels from the Channels section. Calling it again never
+     *  duplicates. */
     fun seedIfEmpty() {
         if (channels.isNotEmpty()) return
-        addChannel("Channel One")
-        addChannel("Channel Two")
+        addChannel("Write your channel name")
     }
 
     /* ---------- channels ---------- */

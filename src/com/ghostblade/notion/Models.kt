@@ -82,7 +82,7 @@ data class Page(
     var updatedAt: Long = 0
 )
 
-/** A YouTube channel (the owner's content channels get a home tab each). */
+/** A YouTube channel (Sir's content channels get a home tab each). */
 data class Channel(
     var id: String,
     var name: String,
