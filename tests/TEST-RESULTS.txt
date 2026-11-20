@@ -1,0 +1,503 @@
+PASS  valid date
+PASS  valid leap day 2024
+PASS  invalid non-leap feb29 2026
+PASS  invalid month 13
+PASS  invalid month 00
+PASS  invalid apr 31
+PASS  invalid feb 30
+PASS  malformed text date
+PASS  malformed unpadded date
+PASS  malformed slashes
+PASS  null date ok (optional)
+PASS  blank date ok (optional)
+PASS  addDays month edge
+PASS  addDays year edge
+PASS  addDays leap edge
+PASS  addDays non-leap feb
+PASS  addDays negative
+PASS  addDays negative year edge
+PASS  addDays zero
+PASS  addDays +30 over month
+PASS  uid unique
+PASS  sortBlocks by order
+PASS  sortBlocks stable on ties
+PASS  seed creates 2 channels
+PASS  seed channel names
+PASS  seed twice does not duplicate
+PASS  addScript returns script
+PASS  new script is DRAFT
+PASS  new script fields
+PASS  canMarkFinal on draft
+PASS  markScriptFinal first time
+PASS  script now FINAL
+PASS  canMarkFinal on final
+PASS  markScriptFinal second time false
+PASS  markScriptFinal missing id false
+PASS  addScript missing channel null
+PASS  addScript invalid date null
+PASS  addScript null date ok
+PASS  scriptsForChannel rise count
+PASS  scriptsForChannel reborn count
+PASS  Logic count helper
+PASS  idea starts unlinked
+PASS  startScriptFromIdea returns script
+PASS  idea script is DRAFT
+PASS  idea script title = idea title
+PASS  idea script body = idea notes
+PASS  idea script in idea channel
+PASS  script.linkedIdeaId set
+PASS  idea.linkedScriptId set
+PASS  ideaLinkConsistent true
+PASS  startScriptFromIdea twice null
+PASS  startScriptFromIdea missing idea null
+PASS  idea script in scriptsForChannel
+PASS  ideaLinkConsistent false when one-way
+PASS  orphan idea uses first channel
+PASS  orphan idea link consistent
+PASS  startScriptFromIdea no channels null
+PASS  addTask returns task
+PASS  task starts not done
+PASS  toggleTask on returns true
+PASS  task done after toggle on
+PASS  toggleTask off returns true
+PASS  task not done after toggle off
+PASS  toggleTask missing id false
+PASS  addTask invalid date null
+PASS  addTask no channel/date ok
+PASS  tasks list holds added tasks
+PASS  block orders assigned sequentially
+PASS  blocksForPage in order
+PASS  blocksForPage sorted after reorder
+PASS  blocksForPage filters by page
+PASS  next block on page-1 continues past max
+PASS  idea defaults
+PASS  updateScript returns true
+PASS  updateScript title applied
+PASS  updateScript body applied
+PASS  updateScript language applied
+PASS  updateScript date applied
+PASS  updateScript bumps updatedAt
+PASS  updateScript null params return true
+PASS  updateScript null params leave fields
+PASS  updateScript invalid date false
+PASS  updateScript invalid date changes nothing
+PASS  updateScript missing id false
+PASS  updateScript blank date clears returns true
+PASS  updateScript date cleared to null
+PASS  taskLinkConsistent false before link
+PASS  linkTaskToScript returns true
+PASS  task side holds script id
+PASS  script side holds task id
+PASS  taskLinkConsistent true after link
+PASS  duplicate link returns false
+PASS  duplicate link adds no entries
+PASS  link missing task false
+PASS  link missing script false
+PASS  tasksForScript finds task
+PASS  scriptsForTask finds script
+PASS  link second task to same script true
+PASS  script now links 2 tasks
+PASS  unlink returns true
+PASS  unlink clears task side
+PASS  unlink clears script side for that task
+PASS  unlink non-linked returns false
+PASS  unlink missing id false
+PASS  relink after unlink true
+PASS  round-trip counts match
+PASS  round-trip script linkedTaskIds preserved
+PASS  round-trip task linkedScriptIds preserved
+PASS  round-trip idea->script link preserved
+PASS  round-trip script->idea link preserved
+PASS  round-trip special-char title preserved
+PASS  round-trip special-char body preserved
+PASS  malformed JSON leaves store untouched
+PASS  legacy v0.1 JSON loads channel
+PASS  legacy v0.1 script has empty task links
+PASS  sink receives channel record on addChannel
+PASS  channel record table+id
+PASS  sink receives script record
+PASS  script record dataJson holds title
+PASS  updateScript emits again
+PASS  update record dataJson holds new body
+PASS  link emits task record carrying the link
+PASS  backfill emits pre-existing channel
+PASS  backfill emits pre-existing script
+PASS  no emissions after sink uninstalled
+PASS  updateScript channelId moves channel
+PASS  script now in channel B
+PASS  channel move emitted with new parent
+PASS  scriptsForChannel A empty after move
+PASS  scriptsForChannel B has moved script
+PASS  updateScript missing channel false
+PASS  updateScript missing channel changes nothing
+PASS  updateScript null channelId leaves channel
+PASS  updateScript empty channelId leaves channel
+PASS  renameChannel true
+PASS  renameChannel applied
+PASS  renameChannel emitted alive record
+PASS  renameChannel missing false
+PASS  renameScript true
+PASS  renameScript emitted
+PASS  renameIdea true
+PASS  updateIdea notes applied
+PASS  updateIdea missing channel false
+PASS  updateIdea empty channelId clears
+PASS  renameTask true
+PASS  renamePage true
+PASS  renamePage missing false
+PASS  removeTask true
+PASS  removeTask gone
+PASS  removeTask tombstone emitted
+PASS  removeTask cleaned script side
+PASS  removeTask cleaned idea side
+PASS  removeTask again false
+PASS  removeScript true
+PASS  removeScript tombstone emitted
+PASS  removeScript cleaned page side
+PASS  removeIdea true
+PASS  removeIdea tombstone emitted
+PASS  removePage true
+PASS  removePage tombstone is block/page record
+PASS  updateTask invalid date false
+PASS  updateTask valid date + clear channel
+PASS  updateTask channel cleared to global
+PASS  updateTask missing id false
+PASS  loadFromJsonString valid returns true
+PASS  import {channels:5} rejected
+PASS  store untouched after bad-type import (channels)
+PASS  store untouched after bad-type import (script kept)
+PASS  import {scripts:string} rejected
+PASS  import {pages:object} rejected
+PASS  import {blocks:null} rejected
+PASS  import {tasks:bool} rejected
+PASS  store still intact after all bad imports
+PASS  malformed JSON returns false
+PASS  valid single-key import returns true
+PASS  single-key import replaced channels
+PASS  single-key import cleared scripts (replace-all by design)
+PASS  load for ghost test returns true
+PASS  ghost channel tombstoned on load
+PASS  loaded channel emitted alive on load
+PASS  cascade returns snapshot
+PASS  cascade tombstones for every removed entity
+PASS  cascade removed channel
+PASS  cascade removed A script
+PASS  cascade removed A task
+PASS  cascade removed A idea
+PASS  cascade removed idea-born script
+PASS  cascade leaves only B script
+PASS  cascade kept B channel
+PASS  cascade kept B task/idea
+PASS  survivor task link to dead script cleaned
+PASS  survivor script link to dead task cleaned
+PASS  survivor task link to dead idea cleaned
+PASS  survivor page link to dead script cleaned
+PASS  cascade missing channel null
+PASS  restore cascade true
+PASS  restore emitted alive records
+PASS  restored channel at original index
+PASS  restored scripts at original indices
+PASS  restored tasks at original indices
+PASS  restored ideas at original indices
+PASS  restored internal task-script link consistent
+PASS  restored idea-script link consistent
+PASS  restored survivor task->script link
+PASS  restored survivor script->task link
+PASS  restored survivor task->idea link
+PASS  restored survivor page->script link
+PASS  restore cascade twice false
+PASS  removeChannel plain also cascades (policy)
+PASS  addPage missing parent null
+PASS  rootPages
+PASS  childPages
+PASS  pageAncestors grandchild root-first
+PASS  descendantPageIds includes subtree
+PASS  movePage to other root true
+PASS  child now under root2
+PASS  grandchild followed its parent
+PASS  movePage cycle rejected
+PASS  movePage self rejected
+PASS  movePage missing parent rejected
+PASS  movePage to root true
+PASS  child is root now
+PASS  movePage no-op false
+PASS  page cascade returns snapshot
+PASS  page cascade removed child+grandchild
+PASS  page cascade kept roots
+PASS  page cascade removed child blocks
+PASS  page cascade kept other page blocks
+PASS  page cascade cleaned script page links
+PASS  page cascade missing null
+PASS  restore page cascade true
+PASS  restored pages present
+PASS  restored child blocks back
+PASS  restored grandchild block back with type
+PASS  restored script page links both
+PASS  restored page-script link consistent
+PASS  restore page cascade twice false
+PASS  all 9 block types accepted
+PASS  isValidBlockType rejects unknown
+PASS  addBlock unknown type throws
+PASS  failed addBlock added nothing
+PASS  updateBlockText true
+PASS  updateBlockText applied
+PASS  updateBlockType valid true
+PASS  updateBlockType invalid false
+PASS  updateBlockType invalid leaves type
+PASS  updateBlock missing false
+PASS  setBlockChecked true
+PASS  todo checked applied
+PASS  setBlockCollapsed true
+PASS  toggle collapsed applied
+PASS  setBlockChecked missing false
+PASS  moveBlock to index 2 true
+PASS  sequence after move
+PASS  orders normalised after move
+PASS  moveBlockUp true
+PASS  sequence after move up
+PASS  moveBlockDown at last false
+PASS  moveBlockUp at first false
+PASS  moveBlock missing false
+PASS  removeBlock true
+PASS  orders normalised after remove
+PASS  removeBlock missing false
+PASS  moveBlock no-op still normalises orders
+PASS  sequence after scramble + normalise
+PASS  pageLinkConsistent false before
+PASS  linkPageToScript true
+PASS  page side holds script
+PASS  script side holds page
+PASS  pageLinkConsistent true
+PASS  duplicate page link false
+PASS  link page missing false
+PASS  scriptsForPage
+PASS  pagesForScript
+PASS  unlinkPageFromScript true
+PASS  page link cleared both sides
+PASS  unlink non-linked page false
+PASS  relink page true
+PASS  ideaTaskLinkConsistent false before
+PASS  linkIdeaToTask true
+PASS  idea side holds task
+PASS  task side holds idea
+PASS  ideaTaskLinkConsistent true
+PASS  duplicate idea-task link false
+PASS  link idea-task missing false
+PASS  tasksForIdea
+PASS  ideasForTask
+PASS  unlinkIdeaFromTask true
+PASS  idea-task cleared both sides
+PASS  relink idea-task true
+PASS  R3 round-trip load returns true
+PASS  round-trip pages preserved
+PASS  round-trip child parent preserved
+PASS  round-trip page-script link preserved
+PASS  round-trip script-page link preserved
+PASS  round-trip idea-task link preserved
+PASS  round-trip task-idea link preserved
+PASS  round-trip todo checked preserved
+PASS  round-trip toggle collapsed preserved
+PASS  v0.2-format JSON loads true
+PASS  v0.2 load has no pages
+PASS  v0.2 script linkedPageIds defaults empty
+PASS  v0.2 idea linkedTaskIds defaults empty
+PASS  v0.2 task linkedIdeaIds defaults empty
+PASS  v0.2 block checked/collapsed default false
+PASS  sortScripts TITLE asc case-insensitive
+PASS  sortScripts TITLE desc
+PASS  sortScripts TITLE default is ascending
+PASS  sortScripts LANGUAGE asc (BANGLA first)
+PASS  sortScripts LANGUAGE desc
+PASS  sortScripts STATUS asc (DRAFT first)
+PASS  sortScripts STATUS desc (FINAL first)
+PASS  sortScripts DATE asc nulls last
+PASS  sortScripts DATE desc nulls STILL last
+PASS  sortScripts UPDATED asc ties stable
+PASS  sortScripts UPDATED desc ties stable
+PASS  sortScripts does not mutate input
+PASS  sortTasks TITLE asc case-insensitive
+PASS  sortTasks TITLE desc
+PASS  sortTasks DONE asc open first
+PASS  sortTasks DONE desc done first
+PASS  sortTasks DATE asc nulls last
+PASS  sortTasks DATE desc nulls STILL last
+PASS  group keys both present in order
+PASS  group DRAFT preserves input order
+PASS  group FINAL preserves input order
+PASS  group empty input still has both keys
+PASS  group empty input groups empty
+PASS  group drafts-only FINAL key present empty
+PASS  child block parentBlockId set
+PASS  child block order appends at page max+1
+PASS  top-level block parent still null
+PASS  childBlocks returns direct children in order
+PASS  childBlocks leaf empty
+PASS  childBlocks missing block empty
+PASS  addBlock missing parent throws
+PASS  addBlock parent on other page throws
+PASS  failed child adds added nothing on page
+PASS  blocks size only grew by foreign block
+PASS  sibling move: top2 up swaps with toggle, not into kids
+PASS  full order after top2 up
+PASS  orders normalised after sibling move
+PASS  kids untouched by top-level move
+PASS  first child cannot move up (sibling scope)
+PASS  kid2 up swaps within children only
+PASS  full order after kid2 up
+PASS  childBlocks reflects kid swap
+PASS  top-level relative order unchanged by kid move
+PASS  last child cannot move down (sibling scope)
+PASS  moveBlock child to sibling index 0
+PASS  children back in original order
+PASS  moveBlock top-level toggle to sibling index 0
+PASS  full order after toggle to front
+PASS  kids still grouped after toggle move
+PASS  moveBlockDown last top-level sibling false
+PASS  moveBlock missing still false (R4)
+PASS  linkIdeaToScript true
+PASS  link sets idea side
+PASS  link sets script side
+PASS  link consistent
+PASS  link emits idea record
+PASS  link emits script record
+PASS  link already-linked pair idempotent TRUE (documented choice)
+PASS  idempotent link changes nothing
+PASS  link conflict: idea already taken false
+PASS  conflict left script B unlinked
+PASS  link conflict: script already taken false
+PASS  conflict left idea B unlinked
+PASS  link missing idea false
+PASS  link missing script false
+PASS  unlinkIdeaFromScript true
+PASS  unlink clears both sides
+PASS  unlink emits both entities
+PASS  unlink non-linked false
+PASS  unlink missing id false
+PASS  one-way link repaired by linkIdeaToScript
+PASS  repair set script side
+PASS  repaired link consistent
+PASS  one-way unlink clears naming side
+PASS  one-way unlink cleared script side
+PASS  idea taken by startScriptFromIdea blocks manual link
+PASS  startScript link intact after conflict
+PASS  savePageAsTemplate returns template
+PASS  template snapshot block count
+PASS  template snapshot texts in page order
+PASS  template snapshot types
+PASS  template kid parentIndex points at toggle index
+PASS  template top-level parentIndex null
+PASS  template kid checked snapshotted
+PASS  template toggle collapsed snapshotted
+PASS  save template missing page null
+PASS  save template blank name null
+PASS  failed saves added no templates
+PASS  templateById finds template
+PASS  templateById missing/null
+PASS  template snapshot independent of later page edits
+PASS  createPageFromTemplate returns page
+PASS  created page title defaults to template name
+PASS  created page is a new page
+PASS  created page block texts reproduced
+PASS  created page block types reproduced
+PASS  created blocks have fresh ids
+PASS  created kid checked preserved
+PASS  created toggle collapsed preserved
+PASS  created kid parent is the NEW toggle block
+PASS  created structure via childBlocks
+PASS  create with explicit title
+PASS  create with blank title falls back to template name
+PASS  create from missing template null
+PASS  renameTemplate true
+PASS  renameTemplate applied
+PASS  renameTemplate blank false
+PASS  renameTemplate missing false
+PASS  removeTemplate true
+PASS  removed template gone
+PASS  removeTemplate again false
+PASS  template round-trip load true
+PASS  round-trip template count
+PASS  round-trip template blocks preserved
+PASS  round-trip template parentIndex preserved
+PASS  create from round-tripped template works
+PASS  round-tripped template parent structure reproduced
+PASS  v0.3-format JSON (no templates/trash) loads true
+PASS  v0.3 load templates empty
+PASS  v0.3 load trash empty
+PASS  import {templates:5} rejected
+PASS  templates untouched after bad-type import
+PASS  channels untouched after bad-type import
+PASS  import {trash:string} rejected
+PASS  trash untouched after bad-type import
+PASS  plain removeScript creates NO trash entry
+PASS  deleteScriptToTrash returns entry
+PASS  script trash kind
+PASS  script trash label is title
+PASS  script actually removed by ToTrash
+PASS  trash holds the entry
+PASS  deleteScriptToTrash missing null
+PASS  restoreFromTrash script true
+PASS  restored script back at original index
+PASS  restored script title intact
+PASS  entry removed after successful restore
+PASS  restoreFromTrash missing entry false
+PASS  collision setup: impostor restored
+PASS  restoreFromTrash collision false
+PASS  collision keeps the trash entry
+PASS  impostor removed for cleanup (no trash entry)
+PASS  restore succeeds once collision cleared
+PASS  restored original (not impostor) title
+PASS  idea trash kind/label
+PASS  restore idea back at index
+PASS  task trash kind/label
+PASS  restore task at index with fields
+PASS  block trash kind/label
+PASS  block removed by ToTrash
+PASS  restore block true
+PASS  restored block fields intact
+PASS  kept block untouched by block trash cycle
+PASS  divider trash label falls back to type
+PASS  divider entry cleaned via permanent delete
+PASS  deleteChannelToTrash returns entry
+PASS  channel trash kind/label
+PASS  channel cascade removed contents
+PASS  channel trash delete cleaned survivor task link
+PASS  channel trash delete cleaned survivor page link
+PASS  deleteChannelToTrash missing null
+PASS  restore channel cascade from trash true
+PASS  restored channel at original index
+PASS  restored cascade contents back
+PASS  restored survivor task link from trash
+PASS  restored survivor page link from trash
+PASS  channel entry removed after restore
+PASS  deletePageToTrash returns entry
+PASS  page trash kind/label (root page)
+PASS  page cascade removed pages+blocks
+PASS  page trash delete cleaned script link
+PASS  restore page cascade from trash true
+PASS  restored pages back
+PASS  restored blocks back on their pages
+PASS  restored script page link from trash
+PASS  page entry removed after restore
+PASS  permanentlyDeleteTrash true
+PASS  permanent delete does NOT restore entity
+PASS  permanentlyDeleteTrash again false
+PASS  restore of permanently deleted entry false
+PASS  trash accumulates entries (newest last)
+PASS  emptyTrash clears all
+PASS  trash round-trip load true
+PASS  round-trip trash size
+PASS  round-trip trash kind/label preserved
+PASS  round-trip trash deletedAt preserved
+PASS  restore from round-tripped trash true
+PASS  round-tripped restore brings script back
+----
+492 checks, 0 failures
+RUN_EXIT=0
+
+====
+Db.kt compile check (compile-only, against android.jar):
+  kotlinc Models.kt Logic.kt Store.kt Db.kt -cp android-34/android.jar -d /tmp/gbn-r4/dbcheck.jar
+  Result: COMPILE OK (exit 0, no errors)
+Full-app compile check (all six sources incl. MainActivity.kt/Ui.kt as-is at check time — still the settled v0.3 UI, Team Two's R4 UI not yet landed; R class from the v0.3 build):
+  kotlinc src/com/ghostblade/notion/*.kt -cp android.jar:build/classes -d /tmp/gbn-r4/full.jar
+  Result: COMPILE OK (exit 0; only the pre-existing onBackPressed deprecation warnings, R2 N-10)
